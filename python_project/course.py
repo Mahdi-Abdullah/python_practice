@@ -101,7 +101,6 @@ class Menu:
 
     def main_menu(self):
         '''To display the main menu'''
-        print('Welcome to the Course Management System\n')
         print('1. Display all courses')
         print('2. Search a course by course code or course title')
         print('3. Add a new course')
@@ -112,7 +111,7 @@ class Menu:
     def search_menu(self):
         '''To display the course menu'''
         user_input = input('Enter course code or course title: ')
-        pass
+        return user_input
 
     def add_new_course_menu(self):
         '''To display the faculty menu'''
@@ -120,26 +119,48 @@ class Menu:
         user_input_course_title = input('Enter course title: ')
         user_input_course_credit = int(input('Enter course credit: '))
         user_input_prerequisites = input('Enter prerequisites: ')
-        pass
+        input_list = [user_input_course_code, user_input_course_title.capitalize(), user_input_course_credit, user_input_prerequisites]
+        return input_list
 
     def delete_existing_course_menu(self):
         '''To display the student menu'''
         user_input = input('Enter course code or course title: ')
-        pass
+        return user_input
 
     def update_exitsing_course_menu(self):
         '''To display the exit menu'''
-        user_input = input('Enter course code or course title: ')
+        user_input = input('Enter course code or course title of the course to update: ')
         user_input_course_code = input('Enter course code: ')
         user_input_course_title = input('Enter course title: ')
         user_input_course_credit = int(input('Enter course credit: '))
         user_input_prerequisites = input('Enter prerequisites: ')
-        pass
+        input_list = [user_input, user_input_course_code, user_input_course_title.capitalize(), user_input_course_credit, user_input_prerequisites]
+        return input_list
 
-my_course = Course()
-my_course.read_course_file()
-#print(my_course.course_search('Electronic devices'))
-#my_course.individual_course_display('CSC1205')
-#my_course.adding_new_course('MAT110', 'Differential calculus & co-ordinate geometr',3,'8')
-#my_course.deleting_existing_course('a')
-#my_course.update_existing_course('N/A','N/A','Projec',3,'N/A')
+def main():
+    '''Main function'''
+    course = Course()
+    menu = Menu()
+    print('\nWelcome to the Course Management System\n')
+    while True:
+        menu.main_menu()
+        user_input = input('Enter your choice: ')
+        if user_input == '1':
+            course.all_course_display()
+        elif user_input == '2':
+            course.individual_course_display(menu.search_menu())
+        elif user_input == '3':
+            input_list = menu.add_new_course_menu()
+            course.adding_new_course(input_list[0], input_list[1], input_list[2], input_list[3])
+        elif user_input == '4':
+            course.deleting_existing_course(menu.delete_existing_course_menu())
+        elif user_input == '5':
+            input_list = menu.update_exitsing_course_menu()
+            course.update_existing_course(input_list[0], input_list[1], input_list[2], input_list[3], input_list[4])
+        elif user_input == '6':
+            break
+        else:
+            print('Invalid input!')
+
+# Call the main function
+main()

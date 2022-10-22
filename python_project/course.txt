@@ -49,3 +49,4 @@ CSC4118,Computer graphics,3,CSC2211 MAT2202
 MGT3202,Engineering management,3,EEE2216
 CSC4197,Research methodology,3,N/A
 N/A,Projec,3,N/A
+CSC4181,Advance database management system,3,CSC2108
