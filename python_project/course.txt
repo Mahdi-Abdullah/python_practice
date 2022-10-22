@@ -48,4 +48,4 @@ CSC3216,Compiler design,3,CSC3113
 CSC4118,Computer graphics,3,CSC2211 MAT2202
 MGT3202,Engineering management,3,EEE2216
 CSC4197,Research methodology,3,N/A
-a,v,5,l
+N/A,Projec,3,N/A

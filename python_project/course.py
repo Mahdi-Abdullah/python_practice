@@ -57,7 +57,7 @@ class Course:
         '''To add a new course'''
         if self.course_search(course_code) != False or self.course_search(course_title) != False:
             print('Course already exits')
-        elif self.prerequisite_check(prerequisites) == False:
+        elif self.prerequisite_check(prerequisites) == False and prerequisites != 'N/A':
             print('Prerequisite course missing. Please add prerequisites of this course.')
         else:
             self.course_code = course_code
@@ -68,38 +68,72 @@ class Course:
    
     def deleting_existing_course(self, keyword):
         '''To delete an existing course.'''
-        pass
+        course = self.course_search(keyword)
+        if course == False:
+            print('Course not found!')
+        else:
+            course_list = self.read_course_file()
+            course_list.remove(','.join(course))
+            with open('course.txt', 'w') as file:
+                for line in course_list:
+                    file.write(line)
 
-    def update_existing_course(self):
+    def update_existing_course(self, keyword, course_code, course_title, course_credit, prerequisites):
         '''To update an existing course.'''
+        course = self.course_search(keyword)
+        if course == False:
+            print('Course not found!')
+        else:
+            course_list = self.read_course_file()
+            course_list.remove(','.join(course))
+            with open('course.txt', 'w') as file:
+                for line in course_list:
+                    file.write(line)
+            self.adding_new_course(course_code, course_title, course_credit, prerequisites)
         pass
-
 
 class Menu:
     '''A class containing menu functionalities'''
 
     def __init__(self):
-        '''Initialize name and age attributes'''
+        '''Initialize attributes'''
         pass
 
     def main_menu(self):
         '''To display the main menu'''
-        pass
+        print('Welcome to the Course Management System\n')
+        print('1. Display all courses')
+        print('2. Search a course by course code or course title')
+        print('3. Add a new course')
+        print('4. Delete an existing course')
+        print('5. Update an existing course')
+        print('6. Exit')
 
-    def course_menu(self):
+    def search_menu(self):
         '''To display the course menu'''
+        user_input = input('Enter course code or course title: ')
         pass
 
-    def student_menu(self):
-        '''To display the student menu'''
-        pass
-
-    def faculty_menu(self):
+    def add_new_course_menu(self):
         '''To display the faculty menu'''
+        user_input_course_code = input('Enter course code: ')
+        user_input_course_title = input('Enter course title: ')
+        user_input_course_credit = int(input('Enter course credit: '))
+        user_input_prerequisites = input('Enter prerequisites: ')
         pass
 
-    def exit_menu(self):
+    def delete_existing_course_menu(self):
+        '''To display the student menu'''
+        user_input = input('Enter course code or course title: ')
+        pass
+
+    def update_exitsing_course_menu(self):
         '''To display the exit menu'''
+        user_input = input('Enter course code or course title: ')
+        user_input_course_code = input('Enter course code: ')
+        user_input_course_title = input('Enter course title: ')
+        user_input_course_credit = int(input('Enter course credit: '))
+        user_input_prerequisites = input('Enter prerequisites: ')
         pass
 
 my_course = Course()
@@ -107,3 +141,5 @@ my_course.read_course_file()
 #print(my_course.course_search('Electronic devices'))
 #my_course.individual_course_display('CSC1205')
 #my_course.adding_new_course('MAT110', 'Differential calculus & co-ordinate geometr',3,'8')
+#my_course.deleting_existing_course('a')
+#my_course.update_existing_course('N/A','N/A','Projec',3,'N/A')
