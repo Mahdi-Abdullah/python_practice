@@ -28,10 +28,22 @@ class Course:
            print(line.split(',')[0], ' - ' , line.split(',')[1], ' - ' , line.split(',')[2], ' - ' ,line.split(',')[3])
         
         
-
-    def adding_new_course(self):
+    def adding_new_course(self, course_code, course_title, course_credit, prerequisites):
         '''To add a new course'''
-        pass
+        self.course_code = course_code
+        self.course_title = course_title
+        self.course_credit = course_credit
+        self.prerequisites = prerequisites
+        self.write_course_file()
+
+    def course_search(self, keyword):
+        '''To search a course.'''
+        course = self.read_course_file()
+        course_list = [line.split(',') for line in course]
+        for course in course_list:
+            if keyword == course[0] or keyword == course[1]:
+                return course
+        return False
 
     def updating_existing_course(self):
         '''To update an existing course.'''
@@ -45,9 +57,7 @@ class Course:
         '''To display information about a particular course.'''
         pass
 
-    def course_search(self):
-        '''To search a course.'''
-        pass
+    
 
     def prerequisite_check(self):
         '''To check if the prerequisites are met.'''
@@ -81,5 +91,5 @@ class Menu:
         pass
 
 my_course = Course()
-my_course.all_course_display()
-my_course.write_course_file()
+my_course.read_course_file()
+print(my_course.course_search('Electronic device'))
