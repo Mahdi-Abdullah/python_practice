@@ -1,4 +1,4 @@
-'''Course Management Application'''
+'''Console Based Course Management Application'''
 
 class Course:
     '''A class containing course functionalitis'''
@@ -25,16 +25,7 @@ class Course:
         '''To display information about all the courses'''
         course = self.read_course_file()
         for line in course:
-           print(line.split(',')[0], ' - ' , line.split(',')[1], ' - ' , line.split(',')[2], ' - ' ,line.split(',')[3])
-        
-        
-    def adding_new_course(self, course_code, course_title, course_credit, prerequisites):
-        '''To add a new course'''
-        self.course_code = course_code
-        self.course_title = course_title
-        self.course_credit = course_credit
-        self.prerequisites = prerequisites
-        self.write_course_file()
+           print(line.split(',')[0], ' - ', line.split(',')[1], ' - ', line.split(',')[2], ' - ', line.split(',')[3])
 
     def course_search(self, keyword):
         '''To search a course.'''
@@ -45,23 +36,44 @@ class Course:
                 return course
         return False
 
-    def updating_existing_course(self):
-        '''To update an existing course.'''
-        pass
-
-    def deleting_existing_course(self):
+    def individual_course_display(self, keyword):
+        '''To display information about a particular course.'''
+        course = self.course_search(keyword)
+        if course != False:
+            print('Course_code - Course_title - Course_credit - Prerequisites')
+            print(course[0], ' - ', course[1], ' - ', course[2], ' - ', course[3].strip().split(' '))
+        else:
+            print('Course not found!')
+        
+    def prerequisite_check(self, keyword):
+        '''To check if the prerequisites are met.'''
+        course = self.course_search(keyword)
+        if course == False:
+            return False
+        else:
+            return True
+         
+    def adding_new_course(self, course_code, course_title, course_credit, prerequisites):
+        '''To add a new course'''
+        if self.course_search(course_code) != False or self.course_search(course_title) != False:
+            print('Course already exits')
+        elif self.prerequisite_check(prerequisites) == False:
+            print('Prerequisite course missing. Please add prerequisites of this course.')
+        else:
+            self.course_code = course_code
+            self.course_title = course_title
+            self.course_credit = course_credit
+            self.prerequisites = prerequisites
+            self.write_course_file()
+   
+    def deleting_existing_course(self, keyword):
         '''To delete an existing course.'''
         pass
 
-    def individual_course_display(self):
-        '''To display information about a particular course.'''
+    def update_existing_course(self):
+        '''To update an existing course.'''
         pass
 
-    
-
-    def prerequisite_check(self):
-        '''To check if the prerequisites are met.'''
-        pass
 
 class Menu:
     '''A class containing menu functionalities'''
@@ -92,4 +104,6 @@ class Menu:
 
 my_course = Course()
 my_course.read_course_file()
-print(my_course.course_search('Electronic device'))
+#print(my_course.course_search('Electronic devices'))
+#my_course.individual_course_display('CSC1205')
+#my_course.adding_new_course('MAT110', 'Differential calculus & co-ordinate geometr',3,'8')
