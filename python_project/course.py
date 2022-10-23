@@ -43,7 +43,7 @@ class Course:
             print('Course_code - Course_title - Course_credit - Prerequisites')
             print(course[0], ' - ', course[1], ' - ', course[2], ' - ', course[3].strip().split(' '))
         else:
-            print('Course not found!')
+            print('\nCourse not found!')
         
     def prerequisite_check(self, keyword):
         '''To check if the prerequisites are met.'''
@@ -106,7 +106,7 @@ class Menu:
         print('3. Add a new course')
         print('4. Delete an existing course')
         print('5. Update an existing course')
-        print('6. Exit')
+        print('6. Exit\n')
 
     def search_menu(self):
         '''To display the course menu'''
@@ -119,6 +119,7 @@ class Menu:
         user_input_course_title = input('Enter course title: ')
         user_input_course_credit = int(input('Enter course credit: '))
         user_input_prerequisites = input('Enter prerequisites: ')
+        print()
         input_list = [user_input_course_code, user_input_course_title.capitalize(), user_input_course_credit, user_input_prerequisites]
         return input_list
 
@@ -143,18 +144,24 @@ def main():
     menu = Menu()
     print('\nWelcome to the Course Management System\n')
     while True:
+        print('\nMain Menu\n')
         menu.main_menu()
         user_input = input('Enter your choice: ')
         if user_input == '1':
+            print()
             course.all_course_display()
         elif user_input == '2':
+            print('\nSearch Menu\n')
             course.individual_course_display(menu.search_menu())
         elif user_input == '3':
+            print('\nNew Course Adding Menu\n')
             input_list = menu.add_new_course_menu()
             course.adding_new_course(input_list[0], input_list[1], input_list[2], input_list[3])
         elif user_input == '4':
+            print('\nCourse Deleteing Menu\n')
             course.deleting_existing_course(menu.delete_existing_course_menu())
         elif user_input == '5':
+            print('\nCourse Updating Menu\n')
             input_list = menu.update_exitsing_course_menu()
             course.update_existing_course(input_list[0], input_list[1], input_list[2], input_list[3], input_list[4])
         elif user_input == '6':
