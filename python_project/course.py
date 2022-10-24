@@ -12,20 +12,36 @@ class Course:
 
     def read_course_file(self):
         '''To read the course file'''
-        with open('course.txt', 'r') as file:
-            course = file.readlines()
-        return course
+        while True:
+            try:
+                with open('course.txt', 'r') as file:
+                    course = file.readlines()
+                    return course
+            except FileNotFoundError:
+                print('File not found. Creating a new file.')
+                with open('course.txt', 'w') as file:
+                    pass
 
     def write_course_file(self):
         '''To write the course file.'''
-        with open('course.txt', 'a') as file:
-            file.write(self.course_code + ',' + self.course_title + ',' + str(self.course_credit) + ',' + self.prerequisites + '\n')
+        while True:
+            try:
+                with open('course.txt', 'a') as file:
+                    file.write(self.course_code + ',' + self.course_title + ',' + str(self.course_credit) + ',' + self.prerequisites + '\n')
+                    break
+            except FileNotFoundError:
+                print('File not found. Creating a new file.')
+                with open('course.txt', 'w') as file:
+                    pass
 
     def all_course_display(self):
         '''To display information about all the courses'''
         course = self.read_course_file()
-        for line in course:
-           print(line.split(',')[0], ' - ', line.split(',')[1], ' - ', line.split(',')[2], ' - ', line.split(',')[3])
+        if course == []:
+            print('No courses found!')
+        else:
+            for line in course:
+                print(line.split(',')[0], ' - ', line.split(',')[1], ' - ', line.split(',')[2], ' - ', line.split(',')[3])
 
     def course_search(self, keyword):
         '''To search a course.'''
@@ -47,11 +63,11 @@ class Course:
         
     def prerequisite_check(self, keyword):
         '''To check if the prerequisites are met.'''
-        course = self.course_search(keyword)
-        if course == False:
-            return False
-        else:
-            return True
+        keyword_list = keyword.split(' ')
+        for keyword in keyword_list:
+            if self.course_search(keyword) == False:
+                return False
+        return True
          
     def adding_new_course(self, course_code, course_title, course_credit, prerequisites):
         '''To add a new course'''
@@ -90,7 +106,6 @@ class Course:
                 for line in course_list:
                     file.write(line)
             self.adding_new_course(course_code, course_title, course_credit, prerequisites)
-        pass
 
 class Menu:
     '''A class containing menu functionalities'''
@@ -106,35 +121,91 @@ class Menu:
         print('3. Add a new course')
         print('4. Delete an existing course')
         print('5. Update an existing course')
-        print('6. Exit\n')
+        print('6. Enter quit or 6 to Exit\n')
 
     def search_menu(self):
         '''To display the course menu'''
-        user_input = input('Enter course code or course title: ')
+        while True:
+            try:
+                user_input = input('Enter course code or course title: ')
+                break
+            except ValueError:
+                print('Invalid input!')
         return user_input
 
     def add_new_course_menu(self):
         '''To display the faculty menu'''
-        user_input_course_code = input('Enter course code: ')
-        user_input_course_title = input('Enter course title: ')
-        user_input_course_credit = int(input('Enter course credit: '))
-        user_input_prerequisites = input('Enter prerequisites: ')
+        while True:
+            try:
+                user_input_course_code = input('Enter course code: ')
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_course_title = input('Enter course title: ')
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_course_credit = int(input('Enter course credit: '))
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_prerequisites = input('Enter prerequisites: ')
+                break
+            except ValueError:
+                print('Invalid input!')
         print()
         input_list = [user_input_course_code, user_input_course_title.capitalize(), user_input_course_credit, user_input_prerequisites]
         return input_list
 
     def delete_existing_course_menu(self):
         '''To display the student menu'''
-        user_input = input('Enter course code or course title: ')
+        while True:
+            try:
+                user_input = input('Enter course code or course title: ')
+                break
+            except ValueError:
+                print('Invalid input!')
         return user_input
 
     def update_exitsing_course_menu(self):
         '''To display the exit menu'''
-        user_input = input('Enter course code or course title of the course to update: ')
-        user_input_course_code = input('Enter course code: ')
-        user_input_course_title = input('Enter course title: ')
-        user_input_course_credit = int(input('Enter course credit: '))
-        user_input_prerequisites = input('Enter prerequisites: ')
+        while True:
+            try:
+                user_input = input('Enter course code or course title of the course to update: ')
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_course_code = input('Enter course code: ')
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_course_title = input('Enter course title: ')
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_course_credit = int(input('Enter course credit: '))
+                break
+            except ValueError:
+                print('Invalid input!')
+        while True:
+            try:
+                user_input_prerequisites = input('Enter prerequisites: ')
+                break
+            except ValueError:
+                print('Invalid input!')
+        print()
         input_list = [user_input, user_input_course_code, user_input_course_title.capitalize(), user_input_course_credit, user_input_prerequisites]
         return input_list
 
@@ -146,7 +217,12 @@ def main():
     while True:
         print('\nMain Menu\n')
         menu.main_menu()
-        user_input = input('Enter your choice: ')
+        while True:
+            try:
+                user_input = input('Enter your choice: ')
+                break
+            except ValueError:
+                print('Invalid input!')
         if user_input == '1':
             print()
             course.all_course_display()
@@ -164,10 +240,10 @@ def main():
             print('\nCourse Updating Menu\n')
             input_list = menu.update_exitsing_course_menu()
             course.update_existing_course(input_list[0], input_list[1], input_list[2], input_list[3], input_list[4])
-        elif user_input == '6':
+        elif user_input == '6' or user_input.lower() == 'quit':
             break
         else:
-            print('Invalid input!')
+            print('\nInvalid input!\n')
 
 # Call the main function
 main()
