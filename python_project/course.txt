@@ -28,24 +28,9 @@ MAT2202,Matrices vectors Fourier analysis,3,MAT2101
 CSC2210,Object oriented programming 2,3,CSC2108 CSC1205
 CSC2209,Object oriented analysis and design,3,CSC2108
 BAS2101,Bangladesh studies,3,CSC1101
-EEE3101,Digital logic and circuits,3,EEE2103
 EEE3102,Digital logic and circuits lab,1,EEE2104
 MAT3103,Computational statistics and probability,3,MAT2101
-CSC3113,Theory of computation,3,CSC2211
-ECO3150,Principles of economics,2,MAT3103
-ENG2103,Business communication,3,BAS2101
-MAT3101,Numerical methods for science and engineering,3,MAT2202
-COE3103,Data communication,3,EEE3101 EEE3102
-COE3104,Microprocessor and embedded system,3,EEE3101 EEE3102
-CSC3112,Software engineering,3,CSC2209 CSC2210
 CSC3217,Artificial intelligence and expert system,3,CSC2211 MAT3103
-COE3206,Computer networks,3,COE3103
-COE3205,Computer organization and architecture,3,COE3104
-CSC3214,Operating system,3,CSC2211 COE3104
-CSC3215,Web technologies,3,CSC3112
-EEE2216,Engineering ethics,2,CSC3112 COE3104
-CSC3216,Compiler design,3,CSC3113
-CSC4118,Computer graphics,3,CSC2211 MAT2202
-MGT3202,Engineering management,3,EEE2216
-CSC4197,Research methodology,3,N/A
-CSC4181,Advance database management systems,3,CSC2108
+CSC3113,Theory of computation,3,CSC2211
+COE3103,Data communication,3,EEE3101 EEE3102
+EEE3101,Digital logic and circuits,3,EEE2103
