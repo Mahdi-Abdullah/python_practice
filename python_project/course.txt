@@ -33,4 +33,4 @@ MAT3103,Computational statistics and probability,3,MAT2101
 CSC3217,Artificial intelligence and expert system,3,CSC2211 MAT3103
 CSC3113,Theory of computation,3,CSC2211
 COE3103,Data communication,3,EEE3101 EEE3102
-EEE3101,Digital logic and circuits,3,EEE2103
+EEE3101,Digital logic and circuits design,3,EEE2103

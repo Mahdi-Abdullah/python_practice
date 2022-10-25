@@ -82,8 +82,10 @@ class Course:
         '''To add a new course'''
         if self.course_search(course_code) != False or self.course_search(course_title) != False:
             print('\nCourse already exits')
+            return False
         elif self.prerequisite_check(prerequisites) == False and prerequisites != 'N/A':
             print('\nPrerequisite course missing. Please add prerequisites of this course.')
+            return False
         else:
             self.course_code = course_code
             self.course_title = course_title

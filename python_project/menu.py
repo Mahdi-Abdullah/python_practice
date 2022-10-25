@@ -7,11 +7,11 @@ class Menu:
 
     def main_menu(self):
         '''To display the main menu'''
-        print('1. Display all courses')
-        print('2. Search a course by course code or course title')
-        print('3. Add a new course')
-        print('4. Delete an existing course')
-        print('5. Update an existing course')
+        print('1. Display all courses (press 1)')
+        print('2. Search a course by course code or course title (press 2)')
+        print('3. Add a new course (press 3)')
+        print('4. Delete an existing course (press 4)')
+        print('5. Update an existing course (press 5)')
         print('6. Enter quit or 6 to Exit\n')
 
     def search_menu(self):
