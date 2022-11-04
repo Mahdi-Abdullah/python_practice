@@ -77,6 +77,14 @@ class Course:
             if keyword in course[3].split(' '):
                 return True
         return False
+
+    def existing_prerequisite_course_display(self, keyword):
+        '''To display the courses that have the given course as a prerequisite.'''
+        course = self.read_course_file()
+        course_list = [line.split(',') for line in course]
+        for course in course_list:
+            if keyword in course[3].split(' '):
+                print(course[0], ' - ', course[1], ' - ', course[2], ' - ', ', '.join(course[3].strip().split(' ')))
          
     def adding_new_course(self, course_code, course_title, course_credit, prerequisites):
         '''To add a new course'''
@@ -100,7 +108,9 @@ class Course:
         if course == False:
             print('\nCourse not found!')
         elif self.existing_prerequisite(keyword) == True:
-            print('\nThis course is a prerequisite of another course. Please remove the prerequisites of this course.')
+            print('\nThis course is a prerequisite of another courses. Please delete the prerequisite course first.')
+            print('\nCourses that have this course as a prerequisite: \n')
+            self.existing_prerequisite_course_display(keyword)
         else:
             course_list = self.read_course_file()
             course_list.remove(','.join(course))
