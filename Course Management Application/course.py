@@ -124,14 +124,8 @@ class Course:
         course = self.course_search(keyword)
         if course == False:
             print('Course not found!')
-        elif self.course_search(course_code) != False or self.course_search(course_title) != False:
-            print('Course already exits')
         elif self.prerequisite_check(prerequisites) == False and prerequisites != 'N/A':
             print('Prerequisite course missing. Please add prerequisites of this course.')
-        elif self.existing_prerequisite(keyword) == True:
-            print('This course is a prerequisite of another courses. Please delete the prerequisite course first.')
-            print('\nCourses that have this course as a prerequisite: \n')
-            self.existing_prerequisite_course_display(keyword)
         else:
             course_list = self.read_course_file()
             course_list.remove(','.join(course))
